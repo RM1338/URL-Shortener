@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="tetris-container">
+        <canvas id="tetrisCanvas" width="240" height="400"></canvas>
+    </div>
+
+    
+    <div class="main-content">
+        <div class="header">
+            <h1>URL Shortener</h1>
+            <p class="subtitle">Transform long URLs into short, shareable links</p>
+        </div>
+
+        <div class="form-wrapper">
+            <div class="input-group">
+                <label for="urlInput">Enter your URL</label>
+                <input type="text" id="urlInput" placeholder="https://example.com/" />
+            </div>
+            
+            <button id="submitBtn" onclick="shortenUrl()">
+                <span class="btn-text">Shorten URL</span>
+                <span class="btn-icon">→</span>
+            </button>
+            
+            <div id="output" class="output-area" style="display: none;">
+                <div class="output-header">
+                    <span class="output-label">Your shortened URL</span>
+                    <span class="success-badge">✓ Success</span>
+                </div>
+                <div class="short-url-container">
+                    <span id="shortUrl" class="short-url"></span>
+                    <button class="copy-btn" onclick="copyToClipboard()">
+                        <span class="copy-text">Copy</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="view-all">
+                <a href="/list" class="view-link">
+                    <span>View all URLs</span>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number" id="totalUrls">0</div>
+                <div class="stat-label">URLs Shortened</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill"></div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="totalClicks">0</div>
+                <div class="stat-label">Total Clicks</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/tetris.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
