@@ -20,7 +20,7 @@ def write_urls(urls: List[Dict]) -> None:
 def find_url_by_code(short_code: str) -> Optional[Dict]:
     urls = read_urls()
     for url_entry in urls:
-        if urls_entry['short_code'] == short_code:
+        if url_entry['short_code'] == short_code:
             return url_entry
     return None
 
