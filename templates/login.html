@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - URL Shortener</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+    <canvas id = "bgTetris"></canvas>
+
+    <div class="login-container">
+        <div class="login-box">
+            <h1 class="tetris-title">URL Shortner</h1>
+            <p class="subtitle">Enter your credentials to continue</p>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class ="input-group">
+                    <label for="username">USERNAME</label>
+                    <input type="text" id="username" name="username" placeholder="Enter username" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="password">PASSWORD</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password" required />
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <span>LOGIN</span>
+                    <span class="arrow">→</span>
+                </button>
+            </form>
+
+            <div class="signup-link">
+                Don't have a account? <a href="/signup">Sign Up</a>
+            </div>
+
+            <div class="guest-access">
+                <a href="/" class="guest-link">Continue as Guest →</a>
+            </div>
+        </div>
+
+        <div class="tetris-block block-l"></div>
+        <div class="tetris-block block-t"></div>
+        <div class="tetris-block block-square"></div>
+
+        <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+    </div>
+</body>
+</html>

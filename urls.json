@@ -2,13 +2,13 @@
   {
     "short_code": "LpHW7a",
     "original_url": "https://claude.ai/chat/22957524-a226-4449-93ce-ac7ea4346745",
-    "clicks": 0,
+    "clicks": 2,
     "created_at": "2026-01-12T02:59:51.831741"
   },
   {
     "short_code": "DNPPOb",
     "original_url": "https://google.com",
-    "clicks": 2,
+    "clicks": 3,
     "created_at": "2026-01-12T03:27:39.520926"
   },
   {
@@ -16,5 +16,41 @@
     "original_url": "https://github.com",
     "clicks": 0,
     "created_at": "2026-01-12T03:28:42.082790"
+  },
+  {
+    "short_code": "NN7dyX",
+    "original_url": "https://hackatime.hackclub.com/",
+    "clicks": 0,
+    "created_at": "2026-01-12T09:20:29.260850"
+  },
+  {
+    "short_code": "zlHDv6",
+    "original_url": "https://karunya.edu",
+    "clicks": 1,
+    "created_at": "2026-01-12T14:10:27.624261"
+  },
+  {
+    "short_code": "vKGYgx",
+    "original_url": "https://wakatime.com/developers/",
+    "clicks": 4,
+    "created_at": "2026-01-12T16:21:18.162117"
+  },
+  {
+    "short_code": "NY8jZI",
+    "original_url": "https://www.netacad.com/launch?id=f393c38f-b410-4d2b-8275-70e144273519&tab=curriculum&view=a850c31f-37a7-5cdc-b4eb-cd8f7a225a00",
+    "clicks": 5,
+    "created_at": "2026-01-12T18:23:06.087936"
+  },
+  {
+    "short_code": "zpOx9L",
+    "original_url": "https://nonvindicable-dewey-autodidactic.ngrok-free.dev/",
+    "clicks": 0,
+    "created_at": "2026-01-12T18:51:03.081980"
+  },
+  {
+    "short_code": "idUSNr",
+    "original_url": "https://www.instagram.com/reels/DTZUaDokf1i/",
+    "clicks": 0,
+    "created_at": "2026-01-12T22:08:34.336058"
   }
 ]

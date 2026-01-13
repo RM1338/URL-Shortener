@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+#bgTetris {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.08;
+}
+
+.login-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.login-box {
+    background: white;
+    padding: 50px 60px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 2px solid #e5e7eb;
+    width: 450px;
+    position: relative;
+}
+
+.tetris-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 24px;
+    color: #000;
+    text-align: center;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+    line-height: 1.5;
+    text-shadow: 3px 3px 0px rgba(255, 107, 53, 0.2);
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 40px;
+}
+
+.input-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 15px;
+    background-color: #fafafa;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #ff6b35;
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
+}
+
+input::placeholder {
+    color: #9ca3af;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 18px 32px;
+    background: linear-gradient(135deg, #ff6b35 0%, #ff5722 100%);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 4px 14px rgba(255, 107, 53, 0.3);
+    transition: opacity 0.2s ease;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    opacity: 0.9;
+}
+
+.login-btn:active {
+    opacity: 0.95;
+}
+
+.arrow {
+    font-size: 20px;
+}
+
+.signup-link {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 14px;
+    color: #666;
+}
+
+.signup-link a {
+    color: #ff6b35;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+.guest-access {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.guest-link {
+    color: #6b7280;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.guest-link:hover {
+    color: #ff6b35;
+}
+
+.tetris-decoration {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.tetris-block {
+    display: grid;
+    gap: 3px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.block-l {
+    grid-template-columns: repeat(2, 30px);
+    grid-template-rows: repeat(3, 30px);
+}
+
+.block-l::before {
+    content: '';
+    background: #000;
+    grid-column: 1;
+    grid-row: 1 / 3;
+}
+
+.block-l::after {
+    content: '';
+    background: #000;
+    grid-column: 1 / 3;
+    grid-row: 3;
+}
+
+.block-t {
+    grid-template-columns: repeat(3, 30px);
+    grid-template-rows: repeat(2, 30px);
+}
+
+.block-square {
+    grid-template-columns: repeat(2, 30px);
+    grid-template-rows: repeat(2, 30px);
+    background: #000;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.block-l {
+    animation-delay: 0s;
+}
+
+.block-t {
+    animation-delay: 0.5s;
+}
+
+.block-square {
+    animation-delay: 1s;
+}
+
+.error-message {
+    background: #fee;
+    color: #c33;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px solid #fcc;
+    animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .tetris-decoration {
+        display: none;
+    }
+
+    .login-box {
+        width: 100%;
+        max-width: 400px;
+        padding: 40px 30px;
+    }
+
+    .tetris-title {
+        font-size: 18px;
+    }
+}

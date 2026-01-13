@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-
     <div class="tetris-container">
         <canvas id="tetrisCanvas" width="240" height="400"></canvas>
     </div>
@@ -37,10 +36,13 @@
                 </div>
                 <div class="short-url-container">
                     <span id="shortUrl" class="short-url"></span>
-                    <button class="copy-btn" onclick="copyToClipboard()">
+                    <button class="copy-btn" onclick="copyToClipboard(event)">
                         <span class="copy-text">Copy</span>
                     </button>
                 </div>
+                <button class="qr-btn" onclick="showQRCode()" style="margin-top: 15px; width: 100%;">
+                    <span>Generate QR Code</span>
+                </button>
             </div>
 
             <div class="view-all">
@@ -71,5 +73,7 @@
 
     <script src="{{ url_for('static', filename='js/tetris.js') }}"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/qr-tetris.js') }}"></script>
+
 </body>
 </html>

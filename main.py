@@ -33,7 +33,7 @@ def print_table(urls):
     for urls in urls:
         code = url['short_code'].ljust(code_width)
         original = url['original_url'][:url_width].ljust(url_width)
-        clicks = str(url['clicks']).ljust(cicks_width)
+        clicks = str(url['clicks']).ljust(clicks_width)
         created = format_datetime(url['created_at']).ljust(date_width)
         print(f"| {code} | {original} | {clicks} | {created} |")
 
@@ -56,12 +56,12 @@ def main():
         result = create_short_url(url)
         print(f"Your short URL: {BASE_URL}/{result['short_code']}")
 
-    elif command == "lists":
+    elif command == "list":
         urls = get_all_urls()
         print_table(urls)
 
     else:
-        print(f"Error: Unknown command '{commanf}'")
+        print(f"Error: Unknown command '{command}'")
         print_usage()
         sys.exit(1)
 

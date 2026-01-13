@@ -1,4 +1,4 @@
 BASE62_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 SHORT_CODE_LENGTH = 6
 DATA_FILE = "urls.json"
-BASE_URL = "localhost:5000"
+BASE_URL = "http://localhost:5000"

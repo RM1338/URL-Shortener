@@ -1,9 +1,29 @@
+function isValidUrl(string) {
+    const urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i;
+    
+    const hasValidProtocol = /^https?:\/\//i.test(string);
+    const hasDomain = /\.[a-z]{2,}$/i.test(string);
+    
+    if (hasValidProtocol) {
+        return urlPattern.test(string);
+    }
+    
+    return hasDomain && /^[\w\-]+(\.[\w\-]+)+/.test(string);
+}
+
 async function shortenUrl() {
     const urlInput = document.getElementById('urlInput');
     const url = urlInput.value.trim();
     
     if (!url) {
         showNotification('Please enter a URL', 'error');
+        return;
+    }
+    
+    if (!isValidUrl(url)) {
+        showNotification('Please enter a valid URL (e.g., google.com or https://example.com)', 'error');
+        urlInput.classList.add('error-shake');
+        setTimeout(() => urlInput.classList.remove('error-shake'), 500);
         return;
     }
     
@@ -22,13 +42,16 @@ async function shortenUrl() {
         });
         
         if (!response.ok) {
-            throw new Error('Failed to shorten URL');
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Failed to shorten URL');
         }
         
         const data = await response.json();
         
         document.getElementById('shortUrl').textContent = data.short_url;
         document.getElementById('output').style.display = 'block';
+        
+        urlInput.value = '';
         
         loadStats();
         
@@ -42,7 +65,7 @@ async function shortenUrl() {
     }
 }
 
-async function copyToClipboard() {
+async function copyToClipboard(event) {
     const shortUrl = document.getElementById('shortUrl').textContent;
     const btn = event.target.closest('.copy-btn');
     const originalContent = btn.innerHTML;
@@ -111,43 +134,19 @@ function showNotification(message, type) {
     }, 3000);
 }
 
-const style = document.createElement('style');
-style.textContent = `
-    .notification {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 16px 24px;
-        border-radius: 12px;
-        font-weight: 600;
-        font-size: 14px;
-        opacity: 0;
-        transform: translateY(-20px);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 1000;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    }
-    
-    .notification.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
-    .notification-success {
-        background: #22c55e;
-        color: white;
-    }
-    
-    .notification-error {
-        background: #ef4444;
-        color: white;
-    }
-`;
-document.head.appendChild(style);
 
 document.getElementById('urlInput').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
         shortenUrl();
+    }
+});
+
+document.getElementById('urlInput').addEventListener('input', function(e) {
+    const url = e.target.value.trim();
+    if (url && !isValidUrl(url)) {
+        e.target.style.borderColor = '#ef4444';
+    } else {
+        e.target.style.borderColor = '';
     }
 });
 

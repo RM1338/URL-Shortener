@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - URL Shortener</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+    <canvas id="bgTetris"></canvas>
+
+    <div class="login-container">
+        <div class="tetris-decoration">
+            <div class="tetris-block block-square"></div>
+            <div class="tetris-block block-t"></div>
+            <div class="tetris-block block-l"></div>
+        </div>
+
+        <div class="login-box">
+            <h1 class="tetris-title">Create Account</h1>
+            <p class="subtitle">Join us to start shortening URLs</p>
+
+            <form id="signupForm" onsubmit="handleSignup(event)">
+                <div class="input-group">
+                    <label for="username">USERNAME</label>
+                    <input type="text" id="username" name="username" placeholder="Choose username" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="email">EMAIL</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="password">PASSWORD</label>
+                    <input type="password" id="password" name="password" placeholder="Create password" required />
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <span>SIGN UP</span>
+                    <span class="arrow">→</span>
+                </button>
+            </form>
+
+            <div class="signup-link">
+                Already have an account? <a href="/login">Login</a>
+            </div>
+
+            <div class="guest-access">
+                <a href="/" class="guest-link">Continue as Guest →</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+    <script>
+        async function handleSignup(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const btn = document.querySelector('.login-btn');
+
+            const existingError = document.querySelector('.error-message');
+            if (existingError) {
+                existingError.remove();
+            }
+
+            btn.innerHTML = '<span>CREATING ACCOUNT...</span>';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    window.location.href = '/login';
+                } else {
+                    showError(data.error || 'Signup failed');
+                }
+            } catch (error) {
+                showError('Connection error. Please try again.');
+            } finally {
+                btn.innerHTML = '<span>SIGN UP</span><span class="arrow">→</span>';
+                btn.disabled = false;
+            }
+        }
+
+        function showError(message) {
+            const form = document.getElementById('signupForm');
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = message;
+            form.insertBefore(errorDiv, form.firstChild);
+        }
+    </script>
+</body>
+</html>

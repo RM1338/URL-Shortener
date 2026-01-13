@@ -2,39 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-widith, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All URLs - URL Shortener</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
+<body class="list-page">
     <div class="list-container">
-        <h1>All Shortened URLs</h1>
-
         <a href="/" class="back-link">← Back to Shortener</a>
+        
+        <header class="list-header">
+            <h1 class="list-title">All Shortened URLs</h1>
+            <p class="list-subtitle">Manage and track all your shortened links</p>
+        </header>
+
+        <div class="stats-cards">
+            <div class="stat-card-small">
+                <div class="stat-number-small">{{ urls|length }}</div>
+                <div class="stat-label-small">Total URLs</div>
+            </div>
+            <div class="stat-card-small">
+                <div class="stat-number-small">{{ urls|sum(attribute='clicks') }}</div>
+                <div class="stat-label-small">Total Clicks</div>
+            </div>
+        </div>
 
         {% if urls %}
-        <table class="url-table">
-            <thead>
-                <tr>
-                    <th>Short Code</th>
-                    <th>Original URL</th>
-                    <th>Clicks</th>
-                    <th>Created</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for url in urls %}
-                <tr>
-                    <td><a href="/{{ url.short_code }}" target="_blank">{{ url,short_code }}</a></td>
-                    <td class="url-cell">{{ url.original_url }}</td>
-                    <td>{{ url.clicks }}</td>
-                    <td>{{ url.created_at[:16] }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-wrapper">
+            <table class="url-table">
+                <thead>
+                    <tr>
+                        <th>Short Code</th>
+                        <th>Original URL</th>
+                        <th>Clicks</th>
+                        <th>Created</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for url in urls %}
+                    <tr>
+                        <td class="short-code-cell">
+                            <a href="{{ base_url }}/{{ url.short_code }}" target="_blank" class="short-link">
+                                {{ url.short_code }}
+                            </a>
+                        </td>
+                        <td class="url-cell">
+                            <div class="url-text">{{ url.original_url }}</div>
+                        </td>
+                        <td class="clicks-cell">
+                            <span class="clicks-badge">{{ url.clicks }}</span>
+                        </td>
+                        <td class="date-cell">{{ url.created_at }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
         {% else %}
-        <p class="no-urls">No URLs have been shortened yet.</p>
+        <div class="no-urls">
+                <img src="{{ url_for('static', filename='assets/no-urls-icon.png') }}" 
+                alt="No URLs Icon" 
+                class="no-urls-icon">
+            <p class="no-urls-text">No URLs have been shortened yet.</p>
+            <a href="/" class="primary-button">Create Your First Link</a>
+        </div>
         {% endif %}
     </div>
 </body>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - URL Not Found</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="main-content" style="margin-left: 0;">
+        <div class="header">
+            <h1 style="font-size: 72px;">404</h1>
+            <p class="subtitle">URL not found</p>
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+            <p style="font-size: 16px; color: #666; margin-bottom: 30px;">
+                {% if short_code %}
+                    The short code "{{ short_code }}" does not exist.
+                {% else %}
+                    The page you're looking for doesn't exist.
+                {% endif %}
+            </p>
+            <a href="/" class="primary-button">Go to Homepage</a>
+        </div>
+    </div>
+</body>
+</html>
